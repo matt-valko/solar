@@ -1,6 +1,8 @@
 # Project: Solar Learning
 # By: Matt Valko & Tristan Kaiser
+<<<<<<< 45d15c687936d1fad4a2948094e2567d99ad5599
 # Last Updated: 3/6/2017
+# Last Updated: 3/5/2017
 
 # Working directories for convenience
 # TK working directory: C:/Users/Tristan/Desktop/RFiles/solar
@@ -49,11 +51,19 @@ wud.url <- 'http://api.wunderground.com/api/'
 
 #### Load File ####
 
+=======
+library(tidyverse)
+library(lubridate)
+library('data.table')
+setwd('C:/Users/Tristan/Desktop/RFiles/solar')
+df <-fread('20160101.csv')
+>>>>>>> Adding R proj & script to import file and get us started
 df <- read.csv('20160101.csv',
                header = TRUE,
                na.strings = c("", NA),
                stringsAsFactors = FALSE,
                check.names = FALSE)
+<<<<<<< 45d15c687936d1fad4a2948094e2567d99ad5599
 str(df)
 
 plot(df)
@@ -70,3 +80,9 @@ wud <- GET(paste0(wud.url, api.key, '/history_20060405/q/TX/Edinburg.json'))
 
 effects.test <- jsonlite::fromJSON(content(wud, "text"))
 
+=======
+boxplot(df[,`CR1000 Battery [VDC]`)
+dim(df)
+
+str(df)
+>>>>>>> Adding R proj & script to import file and get us started
