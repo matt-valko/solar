@@ -79,10 +79,12 @@ df2 <- df %>%
 wud <- GET(paste0(wud.url, api.key, '/history_20060405/q/TX/Edinburg.json'))
 
 effects.test <- jsonlite::fromJSON(content(wud, "text"))
-
+df
 =======
 boxplot(df[,`CR1000 Battery [VDC]`)
 dim(df)
+#Create Outcome
+outcome<- df[,.( outcome= mean(`CR1000 Battery [VDC]`)),by=.(DOY,Year)] 
 
 str(df)
 >>>>>>> Adding R proj & script to import file and get us started
