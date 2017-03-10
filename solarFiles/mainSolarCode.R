@@ -1,8 +1,6 @@
 # Project: Solar Learning
 # By: Matt Valko & Tristan Kaiser
-<<<<<<< 45d15c687936d1fad4a2948094e2567d99ad5599
-# Last Updated: 3/6/2017
-# Last Updated: 3/5/2017
+# Last Updated: 3/7/2017
 
 # Working directories for convenience
 # TK working directory: C:/Users/Tristan/Desktop/RFiles/solar
@@ -39,11 +37,13 @@
 #   weather (cloudy, snow, rainy, sunny, wind speed, dew point)
 
 #### Packages ####
-
+# install.packages('rwunderground')
 library(tidyverse)
 library(lubridate)
 library(jsonlite)
 library(httr)
+library('data.table')
+library(rwunderground)
 
 setwd('C:/Users/Tristan/Desktop/RFiles/solar')
 api.key <- ''
@@ -51,19 +51,12 @@ wud.url <- 'http://api.wunderground.com/api/'
 
 #### Load File ####
 
-=======
-library(tidyverse)
-library(lubridate)
-library('data.table')
-setwd('C:/Users/Tristan/Desktop/RFiles/solar')
-df <-fread('20160101.csv')
->>>>>>> Adding R proj & script to import file and get us started
 df <- read.csv('20160101.csv',
                header = TRUE,
                na.strings = c("", NA),
                stringsAsFactors = FALSE,
                check.names = FALSE)
-<<<<<<< 45d15c687936d1fad4a2948094e2567d99ad5599
+
 str(df)
 
 plot(df)
@@ -81,10 +74,11 @@ df2 <- df %>%
 wud <- GET(paste0(wud.url, api.key, '/history_20060405/q/TX/Edinburg.json'))
 
 effects.test <- jsonlite::fromJSON(content(wud, "text"))
-df
-=======
-boxplot(df[,`CR1000 Battery [VDC]`)
+
+
+boxplot(df[,`CR1000 Battery [VDC]`])
 dim(df)
+<<<<<<< HEAD
 #Create feature set
 > names(df)
  [1] "V1"                         "Year"                      
@@ -95,9 +89,10 @@ dim(df)
 [11] "Global (stdev) [W/m^2]"     "Diffuse Horizontal [W/m^2]"
 [13] "Diffuse (stdev) [W/m^2]"    "CR1000 Temp [deg C]"       
 > 
+=======
+>>>>>>> d85c59ff432446dfc97afb9cca5584db5575b718
 
 #Create Outcome
 outcome<- df[,.( outcome= mean(`CR1000 Battery [VDC]`)),by=.(DOY,Year)] 
 
 str(df)
->>>>>>> Adding R proj & script to import file and get us started
