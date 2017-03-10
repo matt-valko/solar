@@ -76,6 +76,8 @@ df2 <- df %>%
 # 2. Turn into function to grab data for every day of 2016.
 #    Lubridate?
 
+
+
 wud <- GET(paste0(wud.url, api.key, '/history_20060405/q/TX/Edinburg.json'))
 
 effects.test <- jsonlite::fromJSON(content(wud, "text"))
@@ -83,6 +85,17 @@ df
 =======
 boxplot(df[,`CR1000 Battery [VDC]`)
 dim(df)
+#Create feature set
+> names(df)
+ [1] "V1"                         "Year"                      
+ [3] "DOY"                        "CST"                       
+ [5] "CR1000 Battery [VDC]"       "Direct Normal [W/m^2]"     
+ [7] "Direct (stdev) [W/m^2]"     "CHP1 Temp [deg C]"         
+ [9] "CHP1 Temp (stdev) [deg C]"  "Global Horizontal [W/m^2]" 
+[11] "Global (stdev) [W/m^2]"     "Diffuse Horizontal [W/m^2]"
+[13] "Diffuse (stdev) [W/m^2]"    "CR1000 Temp [deg C]"       
+> 
+
 #Create Outcome
 outcome<- df[,.( outcome= mean(`CR1000 Battery [VDC]`)),by=.(DOY,Year)] 
 
